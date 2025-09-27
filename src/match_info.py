@@ -1,6 +1,7 @@
 import requests
 from api import headers
 from responses import response_data
+from maximum_user import maximum_user
 
 def match_info(match, user_id):
 
@@ -12,18 +13,13 @@ def match_info(match, user_id):
 
     info = []
 
-    for i in range(0, 10):
+    for i in range(0, maximum_user(data)):
         puuid = data['info']['participants'][i]['puuid']
         
         if user_id == puuid:
             team_id = data['info']['participants'][i]['teamId']
             info.append(data['info']['participants'][i]['teamId'])
-            
-            for j in range(0, 2):
-                team = data["info"]["teams"][j]['teamId']
-                if team_id == team:
-                    info.append(data["info"]["teams"][j]['win'])
-
+            info.append(data['info']['participants'][i]['win'])
             info.append(data['info']['participants'][i]['lane'])
             info.append(data['info']['participants'][i]['championName'])
             info.append(data['info']['gameVersion'])
@@ -32,5 +28,6 @@ def match_info(match, user_id):
             info.append(data['info']['gameDuration'])
             info.append(data['info']['queueId'])
             info.append(match)
+            info.append(user_id)
 
     return info

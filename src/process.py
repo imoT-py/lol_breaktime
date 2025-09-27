@@ -12,4 +12,4 @@ def process(puuids, rank, tier):
         for match in match_ids:
             info = match_info(match, user_id)
             
-            print(info)
+            user_file(info, user_id, rank)
