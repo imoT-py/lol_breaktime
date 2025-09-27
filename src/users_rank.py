@@ -6,4 +6,4 @@ def users_rank(user_id, rank, tier):
     data_path = directory_path / 'outputs'
         
     with open(str(data_path) + "/" + "users.txt", "a") as file:
-        file.write(user_id + ' ' + rank + ' ' + tier + '\n')
+        file.write(user_id + ' ' + rank + ' ' + str(tier) + '\n')
