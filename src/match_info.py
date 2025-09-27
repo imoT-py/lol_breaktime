@@ -2,6 +2,7 @@ import requests
 from api import headers
 from responses import response_data
 from maximum_user import maximum_user
+from datetime import datetime, timezone
 
 def match_info(match, user_id):
 
@@ -23,8 +24,12 @@ def match_info(match, user_id):
             info.append(data['info']['participants'][i]['lane'])
             info.append(data['info']['participants'][i]['championName'])
             info.append(data['info']['gameVersion'])
-            info.append(data['info']['gameCreation'])
-            info.append(data['info']['gameEndTimestamp'])
+            gameCreation = data['info']['gameCreation'] / 1000
+            date_gameCreation = datetime.fromtimestamp(gameCreation, tz=timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
+            info.append(date_gameCreation)
+            gameEndTimeStamp = data['info']['gameEndTimestamp'] / 1000
+            date_gameEndTimeStamp = datetime.fromtimestamp(gameEndTimeStamp, tz=timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
+            info.append(date_gameEndTimeStamp)
             info.append(data['info']['gameDuration'])
             info.append(data['info']['queueId'])
             info.append(match)
