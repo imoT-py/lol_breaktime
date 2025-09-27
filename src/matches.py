@@ -1,16 +1,22 @@
 import requests
 from api import headers
+from responses import response_data
 
-data = []
 
-for start in range(0, 500, 100):
-    response = requests.get(f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/VfsPsngth6fAyuEvLRcQlEZwWjoB5lZxAQvxiSlpamjH5XhXuiJ0nJz4qD7CuXzrkl0XqCW6c16bLQ/ids",params={
-        "start": {start},
-        "count": 100
-        }, headers=headers)
-    print("puuids chall", response.status_code)
+def matches(user_id):
 
-    data.extend(response.json())
-    
-print(data)
+    data = []
 
+    for matches in range(0, 500, 100):
+        url = f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{user_id}/ids"
+        params={
+            "start": matches,
+            "count": 100}
+        
+        response = response_data(url, params)
+        data.extend(response.json())
+
+    data = list(set(data)) 
+    print(len(data))   
+
+    return data

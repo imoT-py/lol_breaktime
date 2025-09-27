@@ -7,7 +7,7 @@ from responses import response_data
 
 def get_puuids_challengers(url):    
     
-    response = response_data(url)
+    response = response_data(url, None)
              
     data = response.json()
     challengers = data['entries']
