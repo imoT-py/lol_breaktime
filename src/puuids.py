@@ -3,12 +3,11 @@ from api import headers
 import time
 from http.client import IncompleteRead
 from requests.exceptions import ChunkedEncodingError, ConnectionError, HTTPError
-from responses import response_challengers
+from responses import response_data
 
-
-def get_puuids_challengers():    
+def get_puuids_challengers(url):    
     
-    response = response_challengers()
+    response = response_data(url)
              
     data = response.json()
     challengers = data['entries']
