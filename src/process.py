@@ -1,6 +1,7 @@
 from matches import matches
 from users_rank import users_rank
 from match_info import match_info
+from user_file import user_file
 
 def process(puuids, rank, tier):
     
@@ -11,5 +12,4 @@ def process(puuids, rank, tier):
         
         for match in match_ids:
             info = match_info(match, user_id)
-            
             user_file(info, user_id, rank)
