@@ -23,6 +23,8 @@ def match_info(match, user_id):
             team_id = data['info']['participants'][i]['teamId']
             info.append(data['info']['participants'][i]['teamId'])
             info.append(data['info']['participants'][i]['win'])
+            team_pos = data['info']['participants'][i].get('teamPosition')
+            info.append((team_pos if team_pos else "None"))
             info.append(data['info']['participants'][i]['lane'])
             info.append(data['info']['participants'][i]['championName'])
             info.append(data['info']['gameVersion'])
