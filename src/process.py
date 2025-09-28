@@ -12,7 +12,7 @@ def process(puuids, rank, tier):
         users_rank(user_id, rank, tier)
         # get match ids
         match_ids = matches(user_id)
-        
+        print("get match_ids")
         # get match info from matches then copy to file
         for match in match_ids:
             info = match_info(match, user_id)

@@ -8,15 +8,22 @@ from requests.exceptions import ChunkedEncodingError, ConnectionError, HTTPError
 def response_data(url, params):      
     
     WAIT_ERROR = 0.5
-    WAIT_STATUS = 15
     
     while True:
         try:
             response = requests.get(url, headers=headers, params=params)
             print("response_data", response.status_code)
+            
+            # check the api limit
+            limit = response.headers.get("X-App-Rate-Limit")
+            count = response.headers.get("X-App-Rate-Limit-Count")
+            print(">>>>>", limit, count)
             if response.status_code in {429, 500, 502, 503, 504}:
+                # give how much time need to wait
+                retry_after = int(response.headers.get("Retry-After", 1))
+                print(retry_after)
                 print("Waiting for the API")
-                time.sleep(WAIT_STATUS)
+                time.sleep(retry_after)
                 continue
                 
             return response
