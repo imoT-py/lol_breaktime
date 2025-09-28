@@ -6,14 +6,16 @@ from datetime import datetime, timezone
 
 def match_info(match, user_id):
 
+    # get match data from api
     url = f"https://europe.api.riotgames.com/lol/match/v5/matches/{match}"
     response = response_data(url, None)
-    print("match data", response.status_code)
+    print("match_info", response.status_code)
 
     data = response.json()
 
     info = []
 
+    # get teamId, match result, lane, championName, gameVersion, game start date, game end date, gameDuration, queueId, match Id, user_id
     for i in range(0, maximum_user(data)):
         puuid = data['info']['participants'][i]['puuid']
         

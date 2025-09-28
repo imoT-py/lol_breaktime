@@ -1,5 +1,7 @@
+# get the maximum user number in a match
 def maximum_user(data):
-
+    
+    print("maximum user")
     max_user = 0
 
     while True:

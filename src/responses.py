@@ -4,7 +4,7 @@ import time
 from http.client import IncompleteRead
 from requests.exceptions import ChunkedEncodingError, ConnectionError, HTTPError
 
-
+# make api call to get info
 def response_data(url, params):      
     
     WAIT_ERROR = 0.5
@@ -13,7 +13,7 @@ def response_data(url, params):
     while True:
         try:
             response = requests.get(url, headers=headers, params=params)
-            print("puuids", response.status_code)
+            print("response_data", response.status_code)
             if response.status_code in {429, 500, 502, 503, 504}:
                 print("Waiting for the API")
                 time.sleep(WAIT_STATUS)
