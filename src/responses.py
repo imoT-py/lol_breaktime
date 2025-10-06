@@ -18,7 +18,7 @@ def response_data(url, params):
             limit = response.headers.get("X-App-Rate-Limit")
             count = response.headers.get("X-App-Rate-Limit-Count")
             print(">>>>>", limit, count)
-            if response.status_code in {404, 429, 500, 502, 503, 504}:
+            if response.status_code in {429, 500, 502, 503, 504}:
                 # give how much time need to wait
                 retry_after = int(response.headers.get("Retry-After", 1))
                 print(retry_after)
@@ -26,6 +26,10 @@ def response_data(url, params):
                 time.sleep(retry_after)
                 continue
                 
+            elif response.status_code == 404:
+                print("404 Not Found:", url)
+                return None
+            
             return response
 
         except (IncompleteRead, ChunkedEncodingError, ConnectionError) as e:
