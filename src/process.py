@@ -16,4 +16,6 @@ def process(puuids, rank, tier):
         # get match info from matches then copy to file
         for match in match_ids:
             info = match_info(match, user_id)
+            if info is None:
+                continue
             user_file(info, user_id, rank)
