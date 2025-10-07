@@ -9,6 +9,8 @@ def match_info(match, user_id):
     # get match data from api
     url = f"https://europe.api.riotgames.com/lol/match/v5/matches/{match}"
     response = response_data(url, None)
+    if response is None:
+        return None
     print("match_info", response.status_code)
 
     data = response.json()
