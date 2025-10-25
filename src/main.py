@@ -5,7 +5,7 @@ from process import process
 
 # create outputs folder and users.txt file
 folder_file()
-
+'''
 high_elo = ['grandmaster', 'master']
 
 # get users, users' match data from high elo
@@ -15,7 +15,7 @@ for rank in high_elo:
     print("puuids saved, continue with process...", rank)
     process(puuids, rank, 'na')
     print("process completed for:", rank)
-
+'''
 low_elo = ["IRON", "BRONZE", "SILVER", "GOLD", "PLATINUM", "EMERALD", "DIAMOND"]
 tiers = ["I", "II", "III", "IV"]
 
